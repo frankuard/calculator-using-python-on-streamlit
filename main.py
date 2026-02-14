@@ -1,96 +1,49 @@
 import streamlit as st
 from logic import *
 
-st.title("Calculator App")
 
 def load_css():
     with open("style/style.css") as f:
-        pass
-# if choice == '1':
-            
-#                 try:
-#                     a = int(input("Enter the first Number:"))
-#                     b = int(input("Enter the second Number:"))
-#                     result=add(a,b)
-#                     print(f"\nThe Addition of {a} and {b} is {result}\n")
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-        
-# if choice == '2':
-            
-#                 try:
-#                     a = int(input("Enter the first Number:"))
-#                     b = int(input("Enter the second Number:"))
-#                     result=subtract(a,b)
-#                     print(f"\nThe Subtraction of {a} and {b} is {result}\n")
-            
-        
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-# if choice == '3':
-            
-#                 try:
-#                     a = int(input("Enter the first Number:"))
-#                     b = int(input("Enter the second Number:"))
-#                     result=multiply(a,b)
-#                     print(f"\nThe Multiplication of {a} and {b} is {result}\n")
-            
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-# if choice == '4':
-            
-#                 try:
-#                     a = int(input("Enter the first Number:"))
-#                     b = int(input("Enter the second Number:"))
-#                     result=divide(a,b)
-#                     print(f"\nThe Division of {a} and {b} is {result}\n")
-            
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-# if choice == '5':
-            
-#                 try:
-#                     a = int(input("Enter the number you wanna square:"))
-                
-#                     result=square(a)
-#                     print(f"\nThe Sqaure of {a} is {result}\n")
-            
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-    
-# if choice == '6':
-            
-#                 try:
-#                     a = int(input("Enter the Number:"))
-#                     b = int(input("Enter the Power Value:"))
-#                     result=power(a,b)
-#                     print(f"\nThe Power of {a} raised to {b} is {result}\n")
-            
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
-    
-# if choice == '7':
-            
-#                 try:
-#                     a = int(input("Enter the Number:"))
+load_css()
 
-#                     result=sqaure_root(a)
-#                     print(f"\nThe Sqaure Root of {a} is {result}\n")
-            
-#                 except ValueError:
-#                     print("Please enter a valid integer value")
-#                     continue
+st.markdown('<h1 class="app-title">Calculator</h1>', unsafe_allow_html=True)
+
+st.markdown('<span class="input-wrapper">Enter the first number:</span>', unsafe_allow_html=True)
+a= st.number_input("", value=0, key="num1")
+
+st.markdown('<span class="input-wrapper">Enter the second number:</span>', unsafe_allow_html=True)
+b= st.number_input("", value=0, key="num2")
+
+st.markdown('<span class="input-wrapper">Select an operator:</span>', unsafe_allow_html=True)
+operator = st.selectbox("",["Add","Subtract","Multiply","Divide"])
+
+result = None
+
+def calculate(a,b,operator):
+    if operator == "Add":
+        result = add(a,b)
+        return result
     
-# if choice == 'q':
-#             print('Thank you for using our app.')
-#             print('Goodbye!')
-#             return
-                
- 
+    elif operator == "Subtract":
+        result = subtract(a,b)
+        return result
+        
+    elif operator == "Multiply":
+        result = multiply(a,b)
+        return result
+    
+    elif operator == "Divide":
+        result = divide(a,b)
+        if result is None:
+            st.error("Cannot divide by Zero!")
+        return result
+            
+if st.button("Calculate"):
+    result = calculate(a,b,operator)
+    if result is not None:
+        st.markdown(f"<div class='result'>Result: {result:.2f}</div>", unsafe_allow_html=True)
+    else:
+        st.error("Invalid Operation")
+    
