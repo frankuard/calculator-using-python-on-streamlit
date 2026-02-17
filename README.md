@@ -48,7 +48,7 @@ streamlit run main.py
 
 **Roshan Karki**  
 - GitHub: [Frankuard](https://github.com/frankuard) 
-LinkedIn: [Roshan Karki](https://www.linkedin.com/in/roshan-karki-98188837b)   
+-LinkedIn: [Roshan Karki](https://www.linkedin.com/in/roshan-karki-98188837b)   
 - Email: roshankarki4956@gmail.com 
 
 ---
