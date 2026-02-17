@@ -36,12 +36,11 @@ Custom classes are applied for headings, input labels, buttons, and results.
 
 ```bash
 pip install streamlit
+```
 
 2. Run the app:
-
-
+```bash
 streamlit run main.py
-
 ```
 ---
 
